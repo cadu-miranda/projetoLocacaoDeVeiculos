@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Locacar - Locação de Veículos</title>
+
+    <!-- Definindo o ícone que aparecerá na aba do navegador -->
+    <link rel="icon" type="image/png" href="car-icon.png" />
+
+    <!-- Carregando o Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- BootStrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!-- Angular 1.7 -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+
+    <!-- Angular 1.7 em pt-BR -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/i18n/angular-locale_pt-br.js"></script>
+
+    <!-- Angular Route 1.7 (utilizado para as rotas da aplicação) -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-route.min.js"></script>
+
+    <!-- Angular ngMask 3.0.16 (utilizado para definir a máscara nos campos)-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ngMask/3.1.1/ngMask.min.js"></script>
+
+    <!-- App -->
+    <script type="text/javascript" src="controller/app.js"></script>
+
+</head>
+
+<body ng-app="locacaoApp" ng-controller="locacaoController" style="background-color: rgb(72,61, 139);">
+
+    <!-- Carregando o cabeçalho -->
+    <div ng-include src="'views/cabecalho.html'"></div>
+
+    <!-- O conteúdo de cada partial será carregado abaixo através do ng-view. O Angular utiliza as rotas para saber qual view deverá carregar -->
+
+    <div ng-view></div>
+
+    <!-- Carregando a página -->
+
+    <div ng-include src="'views/rodape.html'"></div>
+
+</body>
+
+</html>

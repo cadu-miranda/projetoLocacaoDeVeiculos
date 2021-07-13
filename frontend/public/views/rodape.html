@@ -1,0 +1,14 @@
+<!-- Para ter sugestões de rodapés com Bootstrap, visite: http://bootsnipp.com/ -->
+
+<div ng-controller='horaController'>
+  <footer id="sticky-footer" class="bg-primary text-white"
+    style="position:fixed;left:0px;bottom:0px;height:30px;width:100%;">
+    <div class="container text-center">
+      <p>Carlos, Douglas & Thiago
+        ({{clock | date:'yyyy'}}) &copy; - Todos os direitos reservados -
+        <i class="material-icons">calendar_today</i> {{ clock | date:'dd/MM/yyyy'}} -
+        <i class="material-icons">timer</i> {{ clock | date:'HH:mm:ss'}}
+      </p>
+    </div>
+  </footer>
+</div>

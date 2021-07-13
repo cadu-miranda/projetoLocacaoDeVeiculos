@@ -1,0 +1,158 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Coluna do formulário -->
+        <div class="col-md-6">
+            <!-- Criação do card do formulário -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4>
+                        <i class="material-icons">time_to_leave</i> Cadastro de Veículos
+                    </h4>
+                </div>
+                <div class="card-body">
+
+                    <form name="formGrupo" class="form-horizontal" ng-submit="salvaVeiculo(dados.veiculo)">
+                        <!-- Text input-->
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label" for="placa">Placa: *</label>
+                            <div class="col-8">
+                                <input id="placa" name="placa" type="text"
+                                    onkeyup="this.value = this.value.toUpperCase();" placeholder="AAA-9999 ou AAA-9A99"
+                                    mask="AAA-9*99" minlength="8" maxlength="9" title="Informe a placa do veículo."
+                                    ng-model="dados.veiculo.placa" class="form-control input-md" required="required">
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label" for="ano">Ano: *</label>
+                            <div class="col-8">
+                                <input id="ano" name="ano" type="text" placeholder="9999/9999"
+                                    ng-model="dados.veiculo.ano" class="form-control input-md" minlength="9"
+                                    maxlength="11" title="Informe o ano do veículo." required="required"
+                                    mask="9999/9999">
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label" for="modelo">Modelo: *</label>
+                            <div class="col-8">
+                                <input id="modelo" name="modelo" type="text" title="Informe o modelo do veículo."
+                                    placeholder="Modelo do veículo" ng-model="dados.veiculo.modelo"
+                                    class="form-control input-md" required="required">
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label" for="descricao">Descrição: *</label>
+                            <div class="col-8">
+                                <textarea id="descricao" name="descricao" maxlength="1000" type="text"
+                                    placeholder="Descrição do veículo" class="form-control"
+                                    ng-model="dados.veiculo.descricao" required="required"
+                                    title="Informe a descrição do veículo." cols="40" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label" for="preco">Preço: *</label>
+                            <div class="col-8">
+                                <input id="preco" name="preco" type="number" step="0.01" min="0" placeholder="R$ 0.00"
+                                    class="form-control input-md" ng-model="dados.veiculo.preco"
+                                    title="Informe o preço de aluguel do veículo." required="required">
+                            </div>
+                        </div>
+                        <!-- Button (Double) -->
+                        <div class="form-group row">
+                            <div class="offset-4 col-8">
+                                <button name="submit" type="submit" title="Salvar os dados" class="btn btn-success">
+                                    <i class="material-icons">save</i> Salvar</button>
+                                <a href="#!menu" class="btn btn-danger" title="Voltar para o menu inicial">
+                                    <i class="material-icons">cancel</i> Voltar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-white bg-primary">
+                    <small>Campos marcados com * são de preenchimento obrigatório.</small>
+                </div>
+            </div>
+        </div>
+        <!-- Coluna da tabela -->
+        <div class="col-md-6">
+            <!-- Caixa de Pesquisa (somente é exibida quando há algum registro no array) -->
+            <div ng-show="dados.veiculos.length !== 0">
+                <div class="input-group mb-6">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="buscaVeiculo">
+                            <i class="material-icons">search</i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Procurar..." ng-model="filtraVeiculo">
+                </div>
+            </div>
+            <!-- Fim da caixa de pesquisa -->
+
+            <!-- Tabela com os dados. Ao inicializar, carrega os dados no array -->
+            <div class="card card-primary">
+                <div class="card-header bg-dark text-white">
+                    <h4>
+                        <i class="material-icons">list</i> Listagem dos Veículos
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" ng-init="carregaVeiculos();"
+                            ng-show="dados.veiculos.length > 0">
+                            <tr>
+                                <th>Placa</th>
+                                <th>Ano</th>
+                                <th>Modelo</th>
+                                <th>Descrição</th>
+                                <th>Preço</th>
+                                <th>Criado em</th>
+                                <th colspan="2">Opções</th>
+                            </tr>
+                            <tr ng-repeat="veiculo in dados.veiculos | orderBy:'name':false | filter:filtraVeiculo">
+                                <td>{{veiculo.placa}}</td>
+                                <td>{{veiculo.ano}}</td>
+                                <td>{{veiculo.modelo}}</td>
+                                <td>{{veiculo.descricao}}</td>
+                                <td>{{veiculo.preco | currency}}</td>
+                                <td>{{veiculo.createdAt | date:'shortDate'}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger"
+                                        ng-click="confirmaExclusaoVeiculo(veiculo)" title="Excluir registro do veículo">
+                                        <i class="material-icons">delete</i>
+                                        <small>Excluir</small>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" ng-click="obtemVeiculoPeloId(veiculo._id)"
+                                        class="btn btn-info" title="Editar registro do veículo">
+                                        <i class="material-icons">edit</i>
+                                        <small>Editar</small>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer" ng-show="dados.veiculos.length > 0">
+                    <span class="badge pull-right">Total de Veículos: {{(dados.veiculos|filter:filtraVeiculo).length}}
+                        de {{dados.veiculos.length}}</span>
+                </div>
+                <!-- Alerta quando não existem registros -->
+                <div class="alert alert-primary" ng-show="dados.veiculos.length === 0">
+                    <p class="text-primary">
+                        <i class="material-icons">warning</i>
+                        <br> Ainda não há nenhum veículo cadastrado.
+                    </p>
+                </div>
+                <!-- Fim do alerta -->
+            </div>
+        </div>
+    </div>

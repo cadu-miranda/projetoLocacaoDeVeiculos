@@ -1,0 +1,36 @@
+<!-- Para ter sugestões de cabeçalhos com Bootstrap, visite: http://bootsnipp.com/ -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+            <nav class="navbar fixed-top navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">Locacar - Locação de Veículos</a>
+            </nav>
+            <br><br><br>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item btn-primary">
+                    <a class="nav-link text-white" href="#"><i class="material-icons">home</i> Início</a>
+                </li>
+                <li class="nav-item btn-success">
+                    <a class="nav-link text-white" href="#!veiculos"><i class="material-icons">time_to_leave</i>
+                        Veículos</a>
+                </li>
+                <!--<li class="nav-item">
+                    <a class="nav-link disabled" href="#"><i class="material-icons">person</i> Usuários</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#"><i class="material-icons">bar_chart</i>Gráficos</a>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+    <div class="row" ng-show="mensagem.titulo">
+        <div class="alert alert-{{mensagem.cor}} alert-dismissible fade show" role="alert">
+            {{mensagem.titulo}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>

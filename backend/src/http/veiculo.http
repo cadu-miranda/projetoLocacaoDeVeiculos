@@ -1,0 +1,52 @@
+@baseUrl = http://localhost:3000
+
+###
+// POST veiculo
+POST {{baseUrl}}/veiculos
+Content-Type: application/json
+
+{
+    "placa": "ABC-1234",
+    "ano": "2018/2019",
+    "modelo": "Chevrolet Prisma",
+    "descricao": "4 portas, branco",
+    "preco": "50.00"
+}
+
+###
+// GET veiculos
+GET {{baseUrl}}/veiculos
+
+###
+//GET veiculos/:id
+@id = 5dd44c7277cedf2a98fce13e
+GET {{baseUrl}}/veiculos/{{id}}
+
+###
+//GET veiculos/texto
+@texto = Prisma
+GET {{baseUrl}}/veiculos/texto/{{texto}}
+
+###
+//PUT /veiculos/:id
+@idUpdate = 5dd44c7277cedf2a98fce13e
+PUT {{baseUrl}}/veiculos/{{idUpdate}}
+Content-Type: application/json
+
+{
+    "placa": "ABC-1234",
+    "ano": "2018/2019",
+    "modelo": "Chevrolet Prisma",
+    "descricao": "4 portas, branco",
+    "preco": "50.00"
+}
+
+###
+//DELETE produto pelo ID
+@idDelete = 5dd44c7277cedf2a98fce13e
+DELETE {{baseUrl}}/veiculos/{{idDelete}}
+
+###
+//GET veiculo pela palca
+@buscaPlaca = ABC-1234
+GET {{baseUrl}}/veiculos/placa/{{buscaPlaca}}
